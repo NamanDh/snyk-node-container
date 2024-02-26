@@ -1,8 +1,17 @@
 steps:
-
+          
   - label: "Some random cmds"
     commands:
       - whoami
+    agents:
+      queue: "ec2_queue"
+
+  - label: "Build"
+    name: ":node:"
+    command: npm test
+    plugins:
+      - docker-compose#v5.1.0:
+          run: app
     agents:
       queue: "ec2_queue"
       
