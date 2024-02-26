@@ -1,0 +1,21 @@
+steps:
+
+  - label: "Some random cmds"
+    commands:
+      - whoami
+    agents:
+      queue: "ec2_queue"
+      
+  - label: "Running snyk node container"
+    plugins:
+      - aws-ssm#v1.0.0:
+          parameters:
+            SNYK_TOKEN: snyk_code 
+      - docker#v5.10.0:
+          image: "snyk/snyk:node"
+          always-pull: true
+          environment: $SNYK_TOKEN
+          volumes:
+            - "\$(PWD):/app"
+    agents:
+      queue: "ec2_queue"
