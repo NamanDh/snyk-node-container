@@ -25,6 +25,6 @@ steps:
           always-pull: true
           environment: $SNYK_TOKEN
           volumes:
-            - "\$(PWD):/app"
+            - "$(PWD):/app"
     agents:
       queue: "ec2_queue"
