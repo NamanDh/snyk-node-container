@@ -1,7 +1,6 @@
 steps:
       
   - label: "Running snyk node container"
-    command: echo $$SNYK_TOKEN
     plugins:
       - aws-ssm#v1.0.0:
           parameters:
