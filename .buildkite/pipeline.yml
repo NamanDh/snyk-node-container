@@ -8,6 +8,7 @@ steps:
       - docker#v5.10.0:
           image: "snyk/snyk:node"
           always-pull: true
-          environment: $SNYK_TOKEN
+          environment:
+            SNYK_TOKEN: "${SNYK_TOKEN}"
     agents:
       queue: "ec2_queue"
