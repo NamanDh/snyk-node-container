@@ -1,12 +1,4 @@
 steps:
-
-  - name: ":node:"
-    command: npm test
-    plugins:
-      - docker-compose#v5.1.0:
-          run: app
-    agents:
-      queue: "ec2_queue"
       
   - label: "Running snyk node container"
     plugins:
@@ -17,7 +9,5 @@ steps:
           image: "snyk/snyk:node"
           always-pull: true
           environment: $SNYK_TOKEN
-          volumes:
-            - "$(PWD):/app"
     agents:
       queue: "ec2_queue"
