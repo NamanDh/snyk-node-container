@@ -1,6 +1,7 @@
 steps:
       
   - label: "Running snyk node container"
+    command: echo $$SNYK_TOKEN
     plugins:
       - aws-ssm#v1.0.0:
           parameters:
@@ -9,6 +10,6 @@ steps:
           image: "snyk/snyk:node"
           always-pull: true
           environment:
-            SNYK_TOKEN: "${SNYK_TOKEN}"
+            - SNYK_TOKEN
     agents:
       queue: "ec2_queue"
